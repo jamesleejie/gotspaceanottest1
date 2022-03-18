@@ -16,9 +16,9 @@ img {
 
 
 <p style="font-family:verdana; font-size:200%; text-align:center;"> Login </p>
-    {% for library_system in library_system %}
-        <h1>{{ library_system.Library }}</h1>
-        <p>{{ library_system.Level }} : {{ library_system.Available_Space}} / {{ library_system.Total_Space }}    </p>
-    {% endfor %}
+  
+{% for library_system in library_system %}
+    <p>{{ library_system.Library }} : {{ library_system.Level }} : {{ library_system.Available_Space}} / {{ library_system.Total_Space }}    </p>
+{% endfor %}
 </body>
 </html>
