@@ -17,6 +17,8 @@ library_system = [
     }
 ]
 
+def welcome(request): 
+    return render(request, "gotspaceanot/welcome.html")
 
 def home(request):
     context = {
