@@ -18,7 +18,11 @@ img {
 <p style="font-family:verdana; font-size:200%; text-align:center;"> 
 <a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
 <hr>
-<h2 style="font-family:verdana; font-size:200%; text-align:center;">CLB?</h2>
+<h2 style="font-family:verdana; font-size:200%; text-align:center;">CLB</h2>
+    {% for library_system in library_system %}
+        <h1>{{ library_system.Library }}</h1>
+        <p>{{ library_system.Level }} : {{ library_system.Available_Space}} / {{ library_system.Total_Space }}    </p>
+    {% endfor %}
   
 </body>
 </html>
