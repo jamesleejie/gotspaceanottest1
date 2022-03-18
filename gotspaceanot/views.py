@@ -29,3 +29,6 @@ def home(request):
 
 def about(request):
     return render(request, 'gotspaceanot/about.html')
+
+def login(request):
+    return render(request, 'gotspaceanot/login.html')
