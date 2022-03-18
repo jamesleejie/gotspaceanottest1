@@ -33,7 +33,7 @@ RUN_LOCAL_DB = config('RUN_LOCAL_DB', default=False, cast=bool)
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '*.herokuapp.com',
+    'gotspaceanottest1.herokuapp.com',
 ]
 
 
