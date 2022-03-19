@@ -47,7 +47,7 @@ def add(request):
                 ##TODO: date validation
                 cursor.execute("INSERT INTO student VALUES (%s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'] ])
-                return redirect('index')    
+                return redirect('welcome')    
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['student'])
 
