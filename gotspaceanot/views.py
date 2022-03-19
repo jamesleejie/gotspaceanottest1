@@ -24,8 +24,7 @@ def home(request):
     context = {
         'library_system': library_system
     }
-    return render(request, 'gotspaceanot/home.html', context)
-
+    return render(request, 'gotspaceanot/home.html', context, {'title': 'Home'})
 
 def about(request):
     return render(request, 'gotspaceanot/about.html')
