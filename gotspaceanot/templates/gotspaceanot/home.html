@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  {% if title %}
+    <title>gotspaceanot? - {{ title }}</title>
+  {%else%}
+    <title>gotspaceanot?</title>
+  {%endif%}
 </head>
 <body style="background-color:powderblue;"></body>
 <meta name="viewport" content="width=device-width, initial-scale=1">
