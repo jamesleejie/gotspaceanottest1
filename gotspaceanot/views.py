@@ -6,7 +6,8 @@ library_system = [
     {
         'Library': 'CLB',
         'Level': '3',
-      
+        'Available_Space': '50',
+        'Total_Space': '50',  
     },
     {
         'Library': 'SLB',
@@ -20,9 +21,14 @@ def welcome(request):
     return render(request, "gotspaceanot/welcome.html")
 
 def home(request):
+    """Shows the main page"""    
     context = {
         'library_system': library_system
     }
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM context ORDER BY Library")
+        library = cursor.fetchall()    
     return render(request, 'gotspaceanot/home.html', context)
 
 def about(request):
