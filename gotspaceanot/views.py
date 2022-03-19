@@ -6,14 +6,13 @@ library_system = [
     {
         'Library': 'CLB',
         'Level': '3',
-        'Total_Space': '50',
-        'Available_Space': '50',
+      
     },
     {
         'Library': 'SLB',
         'Level': '4',
-        'Total_Space': '20',
         'Available_Space': '20',
+        'Total_Space': '20',  
     }
 ]
 
