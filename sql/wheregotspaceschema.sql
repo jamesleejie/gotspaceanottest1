@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS student(
 );
 
 CREATE TABLE IF NOT EXISTS available(
-	library VARCHAR(7) NOT NULL, CHECK (library IN ('CLB','SLB')),
+	library VARCHAR(7) NOT NULL
 	level INT NOT NULL,
 	total_seats INT NOT NULL,
 	available_seats INT NOT NULL,
