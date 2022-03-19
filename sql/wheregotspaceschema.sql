@@ -13,9 +13,9 @@ CREATE TABLE IF NOT EXISTS library_system (
   PRIMARY KEY(matric_number,email) );  --So that student can have multiple entries in the system where they entered at different times
 
 CREATE TABLE IF NOT EXISTS student(
-  student VARCHAR(9),
+  matric_number VARCHAR(9),
   email VARCHAR(256),
-  FOREIGN KEY (student, email) REFERENCES library_system(matric_number,email)
+  FOREIGN KEY (matric_number, email) REFERENCES library_system(matric_number,email)
   ON DELETE CASCADE DEFERRABLE
 );
 
