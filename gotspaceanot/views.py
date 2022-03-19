@@ -12,7 +12,7 @@ def welcome(request):
         available = cursor.fetchall()
         
     result_dict = {'records': available}
-    return render(request, "gotspaceanot/welcome.html")
+    return render(request, "gotspaceanot/welcome.html", result_dict)
 
 def home(request):
     """Shows the main page"""    
