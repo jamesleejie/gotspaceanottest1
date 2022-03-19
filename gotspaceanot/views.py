@@ -49,7 +49,7 @@ def add(request):
                         , [request.POST['Matric Number'], request.POST['Email'] ])
                 return redirect('welcome')    
             else:
-                status = 'Student with Matric Number %s already exists' % (request.POST['student'])
+                status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
 
 
     context['status'] = status
