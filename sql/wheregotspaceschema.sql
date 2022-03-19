@@ -15,10 +15,6 @@ CREATE TABLE IF NOT EXISTS library_system (
 CREATE TABLE IF NOT EXISTS student(
   student VARCHAR(9),
   email VARCHAR(256),
-  level INT,
-  table_no DEC,
-  leaving_for_a_while VARCHAR(3), CHECK (leaving_for_a_while = 'YES' or NULL),
-  leaving_for_good VARCHAR(3), CHECK (leaving_for_good = 'YES' or NULL),
   FOREIGN KEY (student, email) REFERENCES library_system(matric_number,email)
   ON DELETE CASCADE DEFERRABLE
 );
