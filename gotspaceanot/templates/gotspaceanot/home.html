@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  {% if title %}
-    <title>gotspaceanot? - {{ title }}</title>
-  {%else%}
-    <title>gotspaceanot?</title>
-  {%endif%}
-</head>
 <body style="background-color:powderblue;"></body>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
+    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <a href="login">Login</a>
     
     <h1>GotSpaceAnot.com</h1>
     {% for library_system in library_system %}
         <h1>{{ library_system.Library }}</h1>
         <p>{{ library_system.Level }} : {{ library_system.Available_Space}} / {{ library_system.Total_Space }}    </p>
     {% endfor %}
+
+    <table border=1>
+        <thead>
+            <th>Library</th>
+            <th>Level</th>
+            <th>Available Space</th>
+            <th>Total Space</th>
+        </thead>
+        {% for lib in library_system %}
+        <tr>
+            <td> {{ lib.0 }} </td>
+            <td> {{ lib.1 }} </td>
+            <td> {{ lib.2 }} </td>
+            <td> {{ lib.2 }} </td>
+        </tr>
+        {% endfor %}
+    </table>  
+  
+  
+  
 </body>
 </html>
