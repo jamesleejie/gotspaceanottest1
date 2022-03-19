@@ -6,4 +6,5 @@ urlpatterns = [
     path('home/', views.home, name = 'gotspaceanot-home'),
     path('about/', views.about, name='gotspaceanot-about'),
     path('login/', views.login, name = 'gotspaceanot-login'),
+    path('add/' , view.add, name = 'gotspaceanot-add'),
 ]
