@@ -12,6 +12,8 @@ def home(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM available ORDER BY library")
+        available = cursor.fetchall()
+        
     result_dict = {'records': available}
 
     return render(request, 'gotspaceanot/home.html', result_dict)
