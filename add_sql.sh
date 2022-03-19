@@ -32,3 +32,4 @@ psql ${URI} -f sql/wheregotspaceclean.sql
 psql ${URI} -f sql/wheregotspaceschema.sql
 psql ${URI} -f sql/wheregotspacelibrary_system.sql
 psql ${URI} -f sql/wheregotspacestudent.sql
+psql ${URI} -f sql/wheregotspaceavailable.sql
