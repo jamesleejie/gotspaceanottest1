@@ -46,7 +46,22 @@ th, td {
         {% endfor %}
     </table>  
   
-  
+<hr>
+    
+    <table class="center" style="font-family:verdana; font-size:200%; text-align:center;">
+        <thead>
+            <th>Library</th>
+            <th>Matric Number</th>
+            <th>Email</th>
+        </thead>
+        {% for i in records_library %}
+        <tr>
+            <td> {{ i.0 }} </td>
+            <td> {{ i.1 }} </td>
+            <td> {{ i.2 }} </td>
+        </tr>
+        {% endfor %}
+    </table>  
   
 </body>
 </html>
