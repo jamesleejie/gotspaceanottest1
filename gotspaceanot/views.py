@@ -59,8 +59,29 @@ def login(request):
     return render(request, "gotspaceanot/login.html", context)
 
 def logout(request):
-    
-    return render(request, "gotspaceanot/logout.html")
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
+            student = cursor.fetchone()
+            ## No student with same matric card
+            if student == None:
+                status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
+            else:
+                cursor.execute("DELETE FROM student WHERE matric_number = (%s)", [request.POST['Matric Number']])
+                ##Updating the available space when a student logsout
+                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE (library,level) =  (%s, %s)", [request.POST['Library'],request.POST['Level']] )
+                
+                return redirect('gotspaceanot-welcome') 
+
+    context['status'] = status
+ 
+    return render(request, "gotspaceanot/logout.html", context)
 
 def library_system(request):
     context = {}
