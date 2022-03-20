@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.welcome, name = 'gotspaceanot-welcome'),
+    path('admin/', admin.site.urls),
     path('library_system_records/', views.library_system_records, name = 'gotspaceanot-library_system_records'),
     path('about/', views.about, name='gotspaceanot-about'),
     path('login/', views.login, name = 'gotspaceanot-login'),
