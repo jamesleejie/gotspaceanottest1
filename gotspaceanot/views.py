@@ -31,6 +31,31 @@ def about(request):
 
 def login(request):
     return render(request, 'gotspaceanot/login.html')
+
+def library_system(request):
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            library_system = cursor.fetchone()
+            ## No customer with same id
+            if library_system == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO library_system VALUES (%s, %s)"
+                        , [request.POST['Matric Number'], request.POST['Email'] ])
+                return redirect('welcome')    
+            else:
+                status = 'Student with Matric Number %s already inside the library' % (request.POST['Matric Number'])
+
+
+    context['status'] = status
+ 
+    return render(request, "gotspaceanot/add.html", context)   
+
 def add(request):
     """Shows the main page"""
     context = {}
