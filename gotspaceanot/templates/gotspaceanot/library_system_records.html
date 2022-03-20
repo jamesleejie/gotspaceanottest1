@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:powderblue;"></body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+th, td {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+</style>
+
+<h1 style="font-family:verdana; font-size:300%; text-align:center;">Got Space A Not?</h1>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png" alt="NUS" class="center" width="20%" height="20%">
+
+<p style="font-family:verdana; font-size:200%; text-align:center;"> 
+<a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
+    
+<hr>
+    
+    <table class="center" style="font-family:verdana; font-size:200%; text-align:center;">
+        <thead>
+            <th>Library</th>
+            <th>Matric Number</th>
+            <th>Email</th>
+        </thead>
+        {% for i in records_library %}
+        <tr>
+            <td> {{ i.0 }} </td>
+            <td> {{ i.1 }} </td>
+            <td> {{ i.2 }} </td>
+        </tr>
+        {% endfor %}
+    </table>  
+  
+  
+</body>
+</html>

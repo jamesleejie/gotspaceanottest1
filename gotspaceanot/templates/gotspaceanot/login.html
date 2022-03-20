@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:powderblue;"></body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<h1 style="font-family:verdana; font-size:300%; text-align:center;">Login</h1>
+
+<img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png" alt="NUS" class="center" width="20%" height="20%">
+
+<hr>
+<html>
+<body>
+    <h2>Login</h2>
+    <a href="/">Back to home</a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_matric_number" class="control-group"> <label for="id_matric_number" class="control-label requiredField">
+        Matric_Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="Matric Number" maxlength="9" class="textinput textInput" required="" id="id_matric_number"> </div> </div> <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField">
+        Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="Email" maxlength="256" class="textinput textInput" required="" id="id_email"> </div> </div> <div id="div_id_library" class="control-group"> <label for="id_library" class="control-label requiredField">
+        Library<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="Library" maxlength="9" class="textinput textInput" required="" id="id_library"> </div> </div> <div id="div_id_level" class="control-group"> <label for="id_level" class="control-label requiredField">
+        Level<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="Level" maxlength="9" class="textinput textInput" required="" id="id_level"> </div> </div>
+        <br>
+        <button type="submit" value="Add">Login</button>
+    </form>
+</body>
+</html>
+</body>
+</html>

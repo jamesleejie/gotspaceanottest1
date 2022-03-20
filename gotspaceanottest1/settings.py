@@ -86,12 +86,36 @@ WSGI_APPLICATION = 'gotspaceanottest1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+if RUN_LOCAL_DB:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('LOCAL_DB_NAME', default='test'),
+            'USER': config('LOCAL_DB_USER', default=''),
+            'HOST': 'localhost',
+            'PORT': 5432
+        }
     }
-}
+    # If no password is used, the value must not appear in the configuration
+    # Only add the password if one is actually set
+    LOCAL_DB_PASSWORD = config('LOCAL_DB_PASSWORD', default='')
+    if LOCAL_DB_PASSWORD:
+        DATABASES['default']['PASSWORD'] = LOCAL_DB_PASSWORD
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME', default=None),
+            'USER': config('DB_USER', default=None),
+            'PASSWORD': config('DB_PASSWORD', default=None),
+            'HOST': config('DB_HOST', default=None),
+            'PORT': 5432
+        }
+    }
+
 
 
 # Password validation
@@ -133,3 +157,5 @@ STATIC_URL = 'static/'
 
 
 django_heroku.settings(locals())
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
