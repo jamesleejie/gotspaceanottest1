@@ -46,7 +46,7 @@ def library_system(request):
             if library_system == None:
                 ##TODO: date validation
                 cursor.execute("INSERT INTO library_system VALUES (%s, %s)"
-                        , [request.POST['Matric Number'], request.POST['Email'] ])
+                        , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'] ])
                 return redirect('welcome')    
             else:
                 status = 'Student with Matric Number %s already inside the library' % (request.POST['Matric Number'])
@@ -54,7 +54,7 @@ def library_system(request):
 
     context['status'] = status
  
-    return render(request, "gotspaceanot/add.html", context)   
+    return render(request, "gotspaceanot/library_system.html", context)   
 
 def add(request):
     """Shows the main page"""
