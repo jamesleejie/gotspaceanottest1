@@ -5,26 +5,27 @@ from django.db import connection
 
 def welcome(request): 
     """Shows the main page"""    
-    
-    
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM library_system ORDER BY library")
-        library_system = cursor.fetchall()
-        
-    result_dict_2 = {'records_library': library_system}    
-    return render(request, "gotspaceanot/welcome.html", result_dict_2)
-
-def home(request):
-    """Shows the main page"""    
-    
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM available ORDER BY library")
         available = cursor.fetchall()
         
-    result_dict = {'records': available}
+    result_dict = {'records': available}    
+    
+    return render(request, 'gotspaceanot/welcome.html', result_dict)
 
-    return render(request, 'gotspaceanot/home.html', result_dict)
+
+def library_system_records(request):
+    """Shows the main page"""    
+    
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM library_system ORDER BY library")
+        library_system = cursor.fetchall()
+        
+    result_dict_2 = {'records_library': library_system}    
+
+    return render(request, "gotspaceanot/library_system_records.html", result_dict_2)
 
 def about(request):
     return render(request, 'gotspaceanot/about.html')
