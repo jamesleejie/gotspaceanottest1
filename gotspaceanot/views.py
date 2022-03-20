@@ -6,19 +6,13 @@ from django.db import connection
 def welcome(request): 
     """Shows the main page"""    
     
-    ## Use raw query to get all objects
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM available ORDER BY library")
-        available = cursor.fetchall()
-        
-    result_dict = {'records': available}
     
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM library_system ORDER BY library")
         library_system = cursor.fetchall()
         
     result_dict_2 = {'records_library': library_system}    
-    return render(request, "gotspaceanot/welcome.html", {result_dict,result_dict_2})
+    return render(request, "gotspaceanot/welcome.html", result_dict_2)
 
 def home(request):
     """Shows the main page"""    
