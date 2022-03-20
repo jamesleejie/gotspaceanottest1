@@ -51,7 +51,7 @@ def login(request):
                 
                 return redirect('gotspaceanot-welcome')  #will redirect to leaving for a while/ leaving for good page next time
             else:
-                status = student
+                status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
 
 
     context['status'] = status
@@ -74,7 +74,7 @@ def logout(request):
                 status = 'Student with Matric Number %s does not exists' % (request.POST['Matric Number'])
             else:
                 ##Updating the available space when a student logsout
-                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = student[2] and Level = student[3]")
+                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE (library,Level) = (%s, %s)", [student[2] , student[3]])
                 cursor.execute("DELETE FROM student WHERE matric_number = (%s)", [request.POST['Matric Number']])
                 
                 return redirect('gotspaceanot-welcome') 
