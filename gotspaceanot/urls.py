@@ -7,5 +7,5 @@ urlpatterns = [
     path('about/', views.about, name='gotspaceanot-about'),
     path('login/', views.login, name = 'gotspaceanot-login'),
     path('add/' , views.add, name = 'gotspaceanot-add'),
-    path('library_system/', views.library_system, name = 'gotspaceanot-library_system),
+    path('library_system/', views.library_system, name = 'gotspaceanot-library_system'),
 ]
