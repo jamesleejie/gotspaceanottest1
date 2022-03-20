@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.welcome, name = 'gotspaceanot-welcome'),
-    path('home/', views.home, name = 'gotspaceanot-home'),
+    path('library_system_records/', views.home, name = 'gotspaceanot-library_system_records'),
     path('about/', views.about, name='gotspaceanot-about'),
     path('login/', views.login, name = 'gotspaceanot-login'),
     path('add/' , views.add, name = 'gotspaceanot-add'),
