@@ -68,11 +68,14 @@ def add(request):
 
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
-            ## No customer with same id
+            ## No student with same matric card
             if student == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO student VALUES (%s, %s)"
-                        , [request.POST['Matric Number'], request.POST['Email'] ])
+                cursor.execute("INSERT INTO student VALUES (%s, %s, %s, %s)"
+                        , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'], request.POST['Level'])
+                ##Updating the available space when a student register which level he is going to study 
+                cursor.execute("UPDATE available SET available_seats = available_seats - 1 WHERE (library,level) =  (%s, %s)", [request.POST['Library'],request.POST['Level']] )
+                
                 return redirect('gotspaceanot-welcome')    
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
