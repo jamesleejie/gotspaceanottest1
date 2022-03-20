@@ -51,7 +51,7 @@ def login(request):
                 
                 return redirect('gotspaceanot-welcome')  #will redirect to leaving for a while/ leaving for good page next time
             else:
-                status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
+                status = student
 
 
     context['status'] = status
