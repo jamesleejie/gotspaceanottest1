@@ -36,7 +36,7 @@ def login(request):
     status = ''
 
     if request.POST:
-        ## Check if customerid is already in the table
+        ## Check if martic_number is already in the table
         with connection.cursor() as cursor:
 
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
@@ -64,18 +64,18 @@ def logout(request):
     status = ''
 
     if request.POST:
-        ## Check if customerid is already in the table
+        ## Check if matric_number is already in the table
         with connection.cursor() as cursor:
 
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
             if student == None:
-                status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
+                status = 'Student with Matric Number %s does not exists' % (request.POST['Matric Number'])
             else:
-                cursor.execute("DELETE FROM student WHERE matric_number = (%s)", [request.POST['Matric Number']])
                 ##Updating the available space when a student logsout
-                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE (library,level) =  (%s, %s)", [request.POST['Library'],request.POST['Level']] )
+                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = student.2 and Level = student.3")
+                cursor.execute("DELETE FROM student WHERE matric_number = (%s)", [request.POST['Matric Number']])
                 
                 return redirect('gotspaceanot-welcome') 
 
