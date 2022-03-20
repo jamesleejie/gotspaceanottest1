@@ -36,14 +36,12 @@ th, td {
             <th>Library</th>
             <th>Level</th>
             <th>Available Space</th>
-            <th>Total Space</th>
         </thead>
         {% for lib in records %}
         <tr>
             <td> {{ lib.0 }} </td>
             <td> {{ lib.1 }} </td>
-            <td> {{ lib.2 }} </td>
-            <td> {{ lib.2 }} </td>
+            <td> {{ lib.2 }} / {{ lib.3 }}</td>
         </tr>
         {% endfor %}
     </table>  
