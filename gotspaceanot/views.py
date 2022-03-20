@@ -45,7 +45,7 @@ def library_system(request):
             ## No customer with same id
             if library_system == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO library_system VALUES (%s, %s)"
+                cursor.execute("INSERT INTO library_system VALUES (%s, %s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'] ])
                 return redirect('welcome')    
             else:
