@@ -47,7 +47,7 @@ def library_system(request):
                 ##TODO: date validation
                 cursor.execute("INSERT INTO library_system VALUES (%s, %s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'] ])
-                return redirect('welcome')    
+                return redirect('gotspaceanot-welcome')    
             else:
                 status = 'Student with Matric Number %s already inside the library' % (request.POST['Matric Number'])
 
@@ -72,7 +72,7 @@ def add(request):
                 ##TODO: date validation
                 cursor.execute("INSERT INTO student VALUES (%s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'] ])
-                return redirect('welcome')    
+                return redirect('gotspaceanot-welcome')    
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
 
