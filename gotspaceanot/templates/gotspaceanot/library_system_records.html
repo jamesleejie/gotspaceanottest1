@@ -30,20 +30,17 @@ th, td {
     <table class="center" style="font-family:verdana; font-size:200%; text-align:center;">
         <thead>
             <th>Library</th>
-            <th>Level</th>
-            <th>Available Space</th>
-            <th>Total Space</th>
+            <th>Matric Number</th>
+            <th>Email</th>
         </thead>
-        {% for lib in records %}
+        {% for i in records_library %}
         <tr>
-            <td> {{ lib.0 }} </td>
-            <td> {{ lib.1 }} </td>
-            <td> {{ lib.2 }} </td>
-            <td> {{ lib.2 }} </td>
+            <td> {{ i.0 }} </td>
+            <td> {{ i.1 }} </td>
+            <td> {{ i.2 }} </td>
         </tr>
         {% endfor %}
     </table>  
-  
   
   
 </body>
