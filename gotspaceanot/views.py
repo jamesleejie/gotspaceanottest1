@@ -58,6 +58,10 @@ def login(request):
  
     return render(request, "gotspaceanot/login.html", context)
 
+def logout(request):
+    
+    return render(request, "gotspaceanot/logout.html")
+
 def library_system(request):
     context = {}
     status = ''
