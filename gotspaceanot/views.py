@@ -49,7 +49,7 @@ def login(request):
                 ##Updating the available space when a student register which level he is going to study 
                 cursor.execute("UPDATE available SET available_seats = available_seats - 1 WHERE (library,level) =  (%s, %s)", [request.POST['Library'],request.POST['Level']] )
                 
-                return redirect('gotspaceanot-welcome')  #will redirect to leaving for a while/ leaving for good page next time
+                return redirect('gotspaceanot-logout') 
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
 
