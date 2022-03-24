@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color:powderblue;"></body>
+<body style=background-image:url(https://cdn.ifla.org/wp-content/uploads/files/assets/asia-and-oceania/news/nulcl.jpg);"></body>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-img {
+
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 50%;
 }
-table.center {
-  margin-left: auto; 
-  margin-right: auto;
+  
+.container {
+  text-align: center;
 }
-th, td {
-  border: 1px solid black;
-  border-radius: 10px;
+  
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  grid-gap: 15px;
+  padding: 5px;
 }
+.grid-item {
+  background-color: rgb(232,232,232);
+  border: 2px solid white;
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  }
+  
+.typewriter h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+  
 </style>
 
-<h1 style="font-family:verdana; font-size:300%; text-align:center;">Got Space A Not?</h1>
+<head>
+<div class="typewriter">
+  <h1 style ="font-family: 'Monaco'; font-size:150%; text-align:center;">Got Space A Not?</h1>
+</div>
+</head>
 
 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png" alt="NUS" class="center" width="20%" height="20%">
 
-<p style="font-family:verdana; font-size:200%; text-align:center;"> 
-<a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
+<p style="font-family:verdana; font-size:200%; text-align:center;"> <a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
 <a href="https://gotspaceanottest1.herokuapp.com/library_system/">Library System</a> </p>
 <a href="https://gotspaceanottest1.herokuapp.com/library_system_records/">Library System Records</a> </p>
 
 
 <hr>
     
-    <table class="center" style="font-family:verdana; font-size:200%; text-align:center;">
-        <thead>
-            <th>Library</th>
-            <th>Level</th>
-            <th>Available Space</th>
-        </thead>
-        {% for lib in records %}
-        <tr>
-            <td> {{ lib.0 }} </td>
-            <td> {{ lib.1 }} </td>
-            <td> {{ lib.2 }} / {{ lib.3 }}</td>
-        </tr>
-        {% endfor %}
-    </table>  
+<div class="grid-container">
+{% for lib in records %}
+  <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
+    {{lib.0 }} <br> <img src="https://cdn-icons-png.flaticon.com/512/225/225932.png" width="30%" height="40%"> <br> Level {{lib.1}} <br> {{ lib.2 }} / {{ lib.3 }} </div>
+{% endfor %}
+  </div> 
   
 
 </body>
