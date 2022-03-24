@@ -81,10 +81,14 @@ a:hover, a:active {
 </head>
 
 <body>
-<p style="font-family:verdana; font-size:150%; text-align:center;"> <a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
+<p style="font-family:verdana; font-size:100%; text-align:center;"> <a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
 
 <hr>
-    
+  
+<div class="typewriter">
+  <h1 style ="font-family: 'Monaco'; font-size:200%; text-align:center;">By Library</h1>
+</div>
+  
 <div class="grid-container">
 {% for i in records_total %}
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
@@ -93,6 +97,10 @@ a:hover, a:active {
   </div> 
   
 <hr>
+
+<div class="typewriter">
+  <h1 style ="font-family: 'Monaco'; font-size:200%; text-align:center;">By Library and Level</h1>
+</div>
                                                                                                                         
 <div class="grid-container">
 {% for lib in records %}
