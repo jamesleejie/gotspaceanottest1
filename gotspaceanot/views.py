@@ -10,7 +10,11 @@ def welcome(request):
         cursor.execute("SELECT * FROM available ORDER BY library")
         available = cursor.fetchall()
         
-    result_dict = {'records': available}    
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM available ORDER BY library")
+        total_space_available = cursor.fetchall()
+        
+    result_dict = {'records': available, 'records_total': total_space_available}    
     
     return render(request, 'gotspaceanot/welcome.html', result_dict)
 
