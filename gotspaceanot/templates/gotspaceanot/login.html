@@ -10,9 +10,9 @@
 <body>
     <a href="/">Back to home</a>
 
-    <p style="color:red; font-family:verdana; text-align:center;">{{ status|safe }}</p>
+    <p style="color:red;">{{ status|safe }}</p>
     <!-- Create a Form -->
-    <form method="POST">
+    <form method="POST" style = "font-family:verdana; text-align:center;">
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
