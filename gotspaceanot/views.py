@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.db import connection
 
 # Create your views here.
-def admin(request):
+def administrator(request):
     return render(request, 'gotspaceanot/administrator.html')
 
 def welcome(request): 
