@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', views.login, name = 'gotspaceanot-login'),
     path('logout/', views.logout, name = 'gotspaceanot-logout'),    
     path('library_system/', views.library_system, name = 'gotspaceanot-library_system'),
+    path('administrator/', views.administrator, name = 'gotspaceanot-administrator'),
 ]
