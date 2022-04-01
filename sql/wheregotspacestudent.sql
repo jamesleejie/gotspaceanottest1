@@ -3,7 +3,7 @@
   Populate the student table
 
 ****************************/
-/***
+
 INSERT INTO student VALUES('A0217795N','abs@gmail.com', 'CLB', 4);
 INSERT INTO student VALUES('A1234567N','efg@gmail.com', 'SLB', 4);
 insert into student values ('A1735768H', 'e0978835@u.nus.edu', 'CLB', 4 );
@@ -107,4 +107,3 @@ insert into student values ('A2769742H', 'e0609583@u.nus.edu', 'CHLB', 6 );
 insert into student values ('A3755282O', 'e0603485@u.nus.edu', 'CHLB', 6 );
 insert into student values ('A6912105G', 'e0587228@u.nus.edu', 'CJKLLB', 2 );
 
-****/
