@@ -3,7 +3,18 @@ from django.db import connection
 
 # Create your views here.
 def administrator(request):
-    return render(request, 'gotspaceanot/administrator.html')
+    
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM student ORDER BY library")
+        student = cursor.fetchall()   
+        
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM library_system ORDER BY library")
+        library_system = cursor.fetchall()    
+        
+    result_dict = {'library_system': library_system, 'student':student }
+    
+    return render(request, 'gotspaceanot/administrator.html',result_dict)
 
 def welcome(request): 
     """Shows the main page"""    
