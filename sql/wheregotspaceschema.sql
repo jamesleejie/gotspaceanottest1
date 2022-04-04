@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS student(
 CREATE TABLE IF NOT EXISTS available(
 	library VARCHAR(7) NOT NULL,
 	level INT NOT NULL,
-	available_seats INT NOT NULL,
+	available_seats INT NOT NULL CHECK(available_seats > 0),
 	total_seats INT NOT NULL,
 	PRIMARY KEY(library, level)
 );
