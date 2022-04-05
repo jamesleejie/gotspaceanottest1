@@ -5,8 +5,8 @@
 ********************/
 
 CREATE TABLE IF NOT EXISTS library_system (
-  matric_number VARCHAR(9) NOT NULL ,
-  email VARCHAR(256) NOT NULL,
+  matric_number VARCHAR(9) NOT NULL UNIQUE,
+  email VARCHAR(256) NOT NULL UNIQUE,
   library VARCHAR(7) NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
   time_exited TIMESTAMPTZ ,
