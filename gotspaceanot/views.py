@@ -146,3 +146,34 @@ def library_system(request):
     context['status'] = status
  
     return render(request, "gotspaceanot/library_system.html", context)   
+
+def edit(request, id):
+    """Shows the main page"""
+
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+
+    # fetch the object related to passed id
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM student  WHERE matric_number = %s", [matric_number])
+        obj = cursor.fetchone()
+
+    status = ''
+    # save the data from the form
+
+    if request.POST:
+        ##TODO: date validation
+        with connection.cursor() as cursor:
+            cursor.execute("UPDATE student SET matric_number = %s, email = %s, library = %s, Level = %s WHERE matric_number = %s"
+                    , [request.POST['matric_number'], request.POST['email'], request.POST['library'],
+                        request.POST['Level'] , matric_number ])
+            status = 'Student details edited successfully!'
+            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [matric_number])
+            obj = cursor.fetchone()
+
+
+    context["obj"] = obj
+    context["status"] = status
+ 
+    return render(request, "gotspaceanot/edit.html", context)
