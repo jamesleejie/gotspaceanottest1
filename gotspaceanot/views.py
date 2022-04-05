@@ -44,7 +44,7 @@ def library_system_records(request):
 
     return render(request, "gotspaceanot/library_system_records.html", result_dict_2)
 
-def nus_system_records(request):
+def nus_system(request):
     """Shows the main page"""    
     
     ## Use raw query to get all objects
