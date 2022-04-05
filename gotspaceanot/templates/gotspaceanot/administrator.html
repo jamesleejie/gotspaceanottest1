@@ -2,21 +2,6 @@
 <html>
 <body style="background-color:powderblue;"></body>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-table.center {
-  margin-left: auto; 
-  margin-right: auto;
-}
-th, td {
-  border: 1px solid black;
-  border-radius: 10px;
-}
-</style>
 
 <h1 style="font-family:verdana; font-size:300%; text-align:center;">Got Space A Not Administrator</h1>
 
@@ -42,6 +27,7 @@ th, td {
             <th>Time Exited</th>
             <th>Actions</th>  
             </thead>
+        <tr>
         {%for stu in student%}
             <td> {{ stu.0 }} </td>
             <td> {{ stu.1 }} </td>
@@ -53,7 +39,8 @@ th, td {
               <form method="POST" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="Matric Number" value="{{stu.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{stu.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+                <button onclick="return confirm('Are you sure you want to delete {{stu.0}}?');" type="submit" name="action" value="delete">Delete</button>
+        </tr>
               </form></td>
        {% endfor %}
         </table>
