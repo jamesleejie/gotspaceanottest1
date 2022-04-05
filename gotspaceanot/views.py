@@ -44,6 +44,18 @@ def library_system_records(request):
 
     return render(request, "gotspaceanot/library_system_records.html", result_dict_2)
 
+def nus_system_records(request):
+    """Shows the main page"""    
+    
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM nus_system")
+        nus_system = cursor.fetchall()
+        
+    result_dict_2 = {'records_nus': nus_system}    
+
+    return render(request, "gotspaceanot/nus_system.html", result_dict_2)
+
 def about(request):
     return render(request, 'gotspaceanot/about.html')
 
