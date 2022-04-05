@@ -155,7 +155,7 @@ def edit(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM student  WHERE matric_number = %s", [matric_number])
+        cursor.execute("SELECT * FROM student  WHERE matric_number = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -168,7 +168,7 @@ def edit(request, id):
                     , [request.POST['matric_number'], request.POST['email'], request.POST['library'],
                         request.POST['Level'] , matric_number ])
             status = 'Student details edited successfully!'
-            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [matric_number])
+            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [id])
             obj = cursor.fetchone()
 
 
