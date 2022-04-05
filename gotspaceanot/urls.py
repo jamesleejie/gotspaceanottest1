@@ -11,4 +11,5 @@ urlpatterns = [
     path('logout/', views.logout, name = 'gotspaceanot-logout'),    
     path('library_system/', views.library_system, name = 'gotspaceanot-library_system'),
     path('administrator/', views.administrator, name = 'gotspaceanot-administrator'),
+    path('edit/<str:id>', app.views.edit, name='edit'),    
 ]
