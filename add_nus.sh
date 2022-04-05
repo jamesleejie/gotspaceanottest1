@@ -29,4 +29,4 @@ done < ".env"
 URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
-psql ${URI} -f sql/batch1_nus.sql
+psql ${URI} -f sql/nus_system.sql
