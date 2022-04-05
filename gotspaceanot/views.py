@@ -168,7 +168,9 @@ def edit(request, id):
                     , [request.POST['matric_number'], request.POST['email'], matric_number ])            
             cursor.execute("UPDATE student SET matric_number = %s, email = %s, library = %s, Level = %s WHERE matric_number = %s"
                     , [request.POST['matric_number'], request.POST['email'], request.POST['library'],
-                        request.POST['Level'] , matric_number ])
+                        request.POST['Level'] , matric_number ])   
+            cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE (library,level) =  (%s, %s)", [obj[2],obj[3]] )
+            cursor.execute("UPDATE available SET available_seats = available_seats - 1 WHERE (library,level) =  (%s, %s)", [request.POST['library'],request.POST['Level']] )
             status = 'Student details edited successfully!'
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [id])
             obj = cursor.fetchone()
