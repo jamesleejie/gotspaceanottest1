@@ -108,11 +108,13 @@ def library_system(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
-            library_system = cursor.fetchone()
+            cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            NUS_system = cursor.fetchone()
             ## No customer with same id
-            if library_system == None:
+            if NUS_system == None:
                 ##TODO: date validation
+                cursor.execute("INSERT INTO NUS_system VALUES (%s, %s)"
+                        , [request.POST['Matric Number'], request.POST['Email']])
                 cursor.execute("INSERT INTO library_system VALUES (%s, %s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'] ])
                 return redirect('gotspaceanot-welcome')    
