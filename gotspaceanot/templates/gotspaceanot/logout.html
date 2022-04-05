@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:powderblue;"></body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<h1 style="font-family:verdana; font-size:300%; text-align:center;">Logout</h1>
+
+<hr>
+<html>
+<body>
+    <a href="/">Back to home</a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_matric_number" class="control-group"> <label for="id_matric_number" class="control-label requiredField">
+        Matric_Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="Matric Number" maxlength="9" class="textinput textInput" required="" id="id_matric_number"> </div> </div> 
+        <br>
+        <button type="submit" value="Add">Logout</button>
+    </form>
+</body>
+</html>
+</body>
+</html>

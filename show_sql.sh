@@ -28,8 +28,6 @@ done < ".env"
 URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
-psql ${URI} -f sql/wheregotspaceclean.sql
-psql ${URI} -f sql/wheregotspaceschema.sql
-psql ${URI} -f sql/wheregotspaceavailable.sql
-
-
+# psql ${URI} -f sql/see_library_system.sql
+psql ${URI} -f sql/see_student.sql
+# psql ${URI} -f sql/see_available.sql

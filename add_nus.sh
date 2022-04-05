@@ -1,3 +1,4 @@
+
 # Construct the URI from the .env
 DB_HOST=''
 DB_NAME=''
@@ -28,8 +29,4 @@ done < ".env"
 URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
-psql ${URI} -f sql/wheregotspaceclean.sql
-psql ${URI} -f sql/wheregotspaceschema.sql
-psql ${URI} -f sql/wheregotspaceavailable.sql
-
-
+psql ${URI} -f sql/nus_system.sql

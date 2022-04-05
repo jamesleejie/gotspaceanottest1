@@ -5,5 +5,52 @@
 </head>
 <body>
     <h1>About Page</h1>
+    <p><b>Introduction<b><p>
+        <p>
+During examination periods, students frequent the libraries to do their own revision. During
+reading week, there were days when the Central Library was fully packed with 0 capacity left.
+However, students were not informed about it and made a wasted trip to the library. Hence, we
+aim to develop an application where students can find out the available study spots in the
+National University of Singapore (NUS) libraries. Specifically, our application will show the
+available seats on specific floor levels of each library in NUS. NUS has a total of 8 libraries,
+comprising of Central Library (CLB), Chinese Library (CLB), C J Koh Law Library (CJKLLB),
+Hon Sui Sen Memorial Library (HSSMLB), Medical Library (MDLB), Music Library (MULB),
+Science Library (SLB) and Yale-NUS Library (YNLB).
+    <p>
+        
+    <p><b>How the application works<b><p>
+
+        <p> 
+Before going to the library, students can log onto our webpage with their Matriculation Number
+and NUS email to check the availability of seats in various libraries. Upon entering the library
+and taking up a seat, users will scan a QR code on the table where they are studying. Students
+will create an account or log in if they already have an account by using their ‘NUS Matriculation
+Number’ and ‘NUS Email’. When leaving, the student has to scan the app again and indicate
+that they are ‘Leaving Library’ or ‘Leaving for a while’.
+The QR code on the table will automatically assign the ‘Library’ and ‘Table No’ and update the
+database Student and Available accordingly. A table number of ‘3.4.1’ would mean level 3, table
+4, seat 1 as some tables have more than 1 seat.
+The system tracks the Matriculation Number of the student and checks if it corresponds to the
+library system as NUS libraries have gates that require scanning of the student’s matriculation
+card to enter and exit. When the system records the student leaving the library, it will
+automatically check if the student has indicated ‘Leaving Library’ or ‘Leaving for a while’. If the
+student has left the library, the application will update the database and the available spaces. If
+the student has left the library for a while, the available seats will not be updated. If there is a
+Null value for both checkout conditions, the app will alert and prompt the user through their
+email to update the reason for leaving the library. The app will also have a function that
+refreshes itself every day to clear all entries if the student forgets to check out even after
+prompting.
+If possible, we wish to map out the tables on each level and tables which are available and have
+no charging ports would be indicated light green, tables that are available and have charging
+ports will be indicated dark green and tables which are unavailable would be indicated red.
+By indicating which library has how many tables are available on each level, other students that
+want to study can check the app beforehand and not make a wasted trip. To do so, our app
+should be able to query the library name, level, and available table with or without charging
+ports so that the users can search these queries. The app must also be able to update the
+availability of the tables.
+There will be at least one built-in administrator account that gives access to an administration
+interface. This includes the librarian and the app creator.
+            <p>
+    <a href="/">Back to home</a>
 </body>
 </html>
