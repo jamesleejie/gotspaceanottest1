@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS student(
   email VARCHAR(256) REFERENCES library_system(email) ,
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
-  ON DELETE CASCADE DEFERRABLE
 );
 
 CREATE TABLE IF NOT EXISTS available(
