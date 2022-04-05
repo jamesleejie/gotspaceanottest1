@@ -164,6 +164,8 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
+            cursor.execute("UPDATE NUS_system SET matric_number = %s, email = %s WHERE matric_number = %s"
+                    , [request.POST['matric_number'], request.POST['email'], matric_number ])            
             cursor.execute("UPDATE student SET matric_number = %s, email = %s, library = %s, Level = %s WHERE matric_number = %s"
                     , [request.POST['matric_number'], request.POST['email'], request.POST['library'],
                         request.POST['Level'] , matric_number ])
