@@ -3,7 +3,12 @@ from django.db import connection
 
 # Create your views here.
 def administrator(request):
-    
+    ## Delete student
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM student WHERE matric_number = %s", [request.POST['Matric Number']])    
+                
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM student ORDER BY library")
         student = cursor.fetchall()   
