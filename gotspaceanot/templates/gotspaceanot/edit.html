@@ -1,0 +1,23 @@
+<html>
+<body>
+    <h2>Edit {{obj.0}}</h2>
+    <a href="/">Back to home</a>
+
+    <p style="color:red">{{ status|safe }}</p>
+
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_id_matric_number" class="control-group"> <label for="id_matric_number" class="control-label requiredField">
+        Matric Number<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="matric_number" value="{{obj.0}}" maxlength="64" class="textinput textInput" required="" id="id_matric_number"> </div> </div> <div id="div_id_email " class="control-group"> <label for="id_email " class="control-label requiredField">
+        Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email " value="{{obj.1}}" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> <div id="div__id_library" class="control-group"> <label for="id_library" class="control-label requiredField">
+        Library <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="library " value="{{obj.2}}" maxlength="64" class="textinput textInput" required="" id="id_library "> </div> </div> <div id="div_id_level" class="control-group"> <label for="id_level" class="control-label requiredField">
+        Level<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="Level" value="{{obj.3}}" class="textinput textInput" required="" id="id_level"> </div> </div>
+        
+        <br>
+        <button type="submit" value="Update">Update</button>
+    </form>
+</body>
+</html>
