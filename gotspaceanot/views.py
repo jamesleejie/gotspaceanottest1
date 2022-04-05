@@ -110,17 +110,21 @@ def library_system(request):
 
             cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
             NUS_system = cursor.fetchone()
+            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            library_system = cursor.fetchone()
             ## No customer with same id
             if NUS_system == None:
                 ##TODO: date validation
                 cursor.execute("INSERT INTO NUS_system VALUES (%s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email']])
+                
+            if library_system == None:
+                ##TODO: date validation
                 cursor.execute("INSERT INTO library_system VALUES (%s, %s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'] ])
                 return redirect('gotspaceanot-welcome')    
             else:
                 status = 'Student with Matric Number %s already inside the library' % (request.POST['Matric Number'])
-
 
     context['status'] = status
  
