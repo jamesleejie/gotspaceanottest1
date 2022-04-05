@@ -25,13 +25,14 @@ th, td {
 <hr>
   
 <body>
-    <p>To view all the current NUS Students: <a href="https://gotspaceanottest1.herokuapp.com/nus_system/">NUS System</a> </p>  
-    <p>To Simulate when a student taps into the library: <a href="https://gotspaceanottest1.herokuapp.com/library_system/">Library System</a> </p>
-    <p>To view Students inside the library: <a href="https://gotspaceanottest1.herokuapp.com/library_system_records/">Library System Records</a> </p>
+    <button>To view all the current NUS Students: <a href="https://gotspaceanottest1.herokuapp.com/nus_system/">NUS System</a> </button>  
+    <button>To Simulate when a student taps into the library: <a href="https://gotspaceanottest1.herokuapp.com/library_system/">Library System</a> </button>
+    <button>To view Students inside the library: <a href="https://gotspaceanottest1.herokuapp.com/library_system_records/">Library System Records</a> </button>
 
-    <a href="/">Back to user page</a>
+    <button><a href="/">Back to user page</a></button>
 <hr>
     <h2>Students in the Librarys</h2>
+      <table border=1>
             <thead>
             <th>Matric_Number</th>
             <th>Email</th>
@@ -39,6 +40,22 @@ th, td {
             <th>Level</th>
             <th>Time Entered</th>
             <th>Time Exited</th>
+            <th>Actions</th>  
             </thead>
+        {%for stu in student%}
+            <td> {{ stu.0 }} </td>
+            <td> {{ stu.1 }} </td>
+            <td> {{ stu.2 }} </td>     
+            <td> {{ stu.3 }} </td>
+            <td> {{ stu.4 }} </td>
+            <td> {{ stu.5 }} </td>            
+            <td>
+              <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="Matric Number" value="{{stu.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{stu.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+       {% endfor %}
+        </table>
 </body>
 </html>
