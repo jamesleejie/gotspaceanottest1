@@ -4,9 +4,14 @@
 
 ********************/
 
+CREATE TABLE IF NOT EXISTS NUS_system (
+  matric_number VARCHAR(9) NOT NULL UNIQUE,
+  email VARCHAR(256) NOT NULL UNIQUE
+);
+
 CREATE TABLE IF NOT EXISTS library_system (
-  matric_number VARCHAR(9) NOT NULL,
-  email VARCHAR(256) NOT NULL,
+  matric_number VARCHAR(9) NOT NULL REFERENCES NUS_system(matric_number),
+  email VARCHAR(256) NOT NULL REFERENCES NUS_system(email),
   library VARCHAR(7) NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
   time_exited TIMESTAMPTZ ,
@@ -14,8 +19,8 @@ CREATE TABLE IF NOT EXISTS library_system (
 );  --So that student can have multiple entries in the system where they entered at different times
 
 CREATE TABLE IF NOT EXISTS student(
-  matric_number VARCHAR(9) REFERENCES library_system(matric_number),
-  email VARCHAR(256) REFERENCES library_system(email) ,
+  matric_number VARCHAR(9) REFERENCES NUS_system(matric_number),
+  email VARCHAR(256) REFERENCES NUS_system(email) ,
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
