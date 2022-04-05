@@ -22,8 +22,8 @@ html {
   
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto auto auto auto;
   grid-gap: 15px;
   padding: 5px;
 }
@@ -83,17 +83,13 @@ a:hover, a:active {
 <body>
 <p style="font-family:verdana; font-size:100%; text-align:center;"> <a href="https://gotspaceanottest1.herokuapp.com/login/">Login</a> </p>
 
-<hr>
-  
-<div class="typewriter">
-  <h1 style ="font-family: 'Monaco'; font-size:200%; text-align:center;">By Library</h1>
-</div>
-  
+
 <div class="grid-container">
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.0.0}} <br> <img src="https://nus.edu.sg/nuslibraries/images/default-source/library-details/nus-libraries/chinese-library/wbschlib.jpg?sfvrsn=dde6bad5_3" width="30%" height="40%"> 
     <br> Total Seats Available {{records_total.0.1}} / {{records_total.0.2}} 
     <br> Level {{records.0.1}} {{records.0.2}} / {{records.0.3}}
+   </div>
     
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.1.0}} <br> <img src="https://lh4.googleusercontent.com/-kDZF6X1gvdQ/V4c7PQHpnSI/AAAAAAAAFVQ/G6jdj_PA1Ecw2wMq5Qoiv2VOunsOj0nrgCJkC/s1600-w400/" width="30%" height="40%"> 
@@ -101,6 +97,7 @@ a:hover, a:active {
     <br> Level {{records.1.1}} {{records.1.2}} / {{records.1.3}}
     <br> Level {{records.2.1}} {{records.2.2}} / {{records.2.3}}
     <br> Level {{records.3.1}} {{records.3.2}} / {{records.3.3}}
+    </div>
 
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.2.0}} <br> <img src="https://nus.edu.sg/nuslibraries/images/default-source/library-details/image-virtual-tour.png?sfvrsn=2d6c4361_2" width="30%" height="40%"> 
@@ -108,16 +105,19 @@ a:hover, a:active {
     <br> Level {{records.4.1}} {{records.4.2}} / {{records.4.3}}
     <br> Level {{records.5.1}} {{records.5.2}} / {{records.5.3}}
     <br> Level {{records.6.1}} {{records.6.2}} / {{records.6.3}}
+    </div>
     
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.3.0}} <br> <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/NUS%2C_Hon_Sui_Sen_Memorial_Library%2C_Nov_06.JPG" width="30%" height="40%"> 
     <br> Total Seats Available {{records_total.3.1}} / {{records_total.3.2}} 
     <br> Level {{records.7.1}} {{records.7.2}} / {{records.7.3}}
+    </div>
 
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.4.0}} <br> <img src="https://nus.edu.sg/nuslibraries/images/default-source/library-details/nus-libraries/medical-library-virtual-map.jpg?sfvrsn=48464b81_4" width="30%" height="40%"> 
     <br> Total Seats Available {{records_total.4.1}} / {{records_total.4.2}} 
     <br> Level {{records.8.1}} {{records.8.2}} / {{records.8.3}}
+    </div>
 
   <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.5.0}} <br> <img src="https://nus.edu.sg/nuslibraries/images/default-source/library-details/music-library/img_4448.jpg?sfvrsn=e5b644ce_3" width="30%" height="40%"> 
@@ -125,6 +125,7 @@ a:hover, a:active {
     <br> Level {{records.9.1}} {{records.9.2}} / {{records.9.3}}
     <br> Level {{records.10.1}} {{records.10.2}} / {{records.10.3}}
     <br> Level {{records.11.1}} {{records.11.2}} / {{records.11.3}}
+    </div>
 
  <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.6.0}} <br> <img src="https://nus.edu.sg/nuslibraries/images/default-source/library-details/science-library/front-of-block-s6.jpg?sfvrsn=d83fa1a6_1" width="30%" height="40%"> 
@@ -132,11 +133,13 @@ a:hover, a:active {
     <br> Level {{records.12.1}} {{records.12.2}} / {{records.12.3}}
     <br> Level {{records.13.1}} {{records.13.2}} / {{records.13.3}}
     <br> Level {{records.14.1}} {{records.14.2}} / {{records.14.3}}
+   </div>
  
 <div class="grid-item" style = "font-family: 'Arial' ; font-size: 80%;" > 
     {{records_total.7.0}} <br> <img src="https://nus.edu.sg/nuslibraries/images/default-source/library-details/nus-libraries/medical-library-virtual-map.jpg?sfvrsn=48464b81_4" width="30%" height="40%"> 
     <br> Total Seats Available {{records_total.7.1}} / {{records_total.7.2}} 
     <br> Level {{records.15.1}} {{records.15.2}} / {{records.15.3}}
+  </div>
  
   </div> 
     
