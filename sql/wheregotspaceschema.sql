@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS library_system (
   library VARCHAR(7) NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
   time_exited TIMESTAMPTZ ,
-  PRIMARY KEY(matric_number,email,time_entered) );  --So that student can have multiple entries in the system where they entered at different times
+  PRIMARY KEY(matric_number,email,time_entered)
+);  --So that student can have multiple entries in the system where they entered at different times
 
 CREATE TABLE IF NOT EXISTS student(
   matric_number VARCHAR(9) REFERENCES library_system(matric_number) PRIMARY KEY,
