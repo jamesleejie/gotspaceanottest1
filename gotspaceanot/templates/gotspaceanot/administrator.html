@@ -34,6 +34,7 @@
             <td> {{ stu.4 }} </td>
             <td> {{ stu.5 }} </td>            
             <td>
+              <a href="edit/{{stu.0}}"><button>Edit</button></a>
               <form method="POST" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="Matric Number" value="{{stu.0}}"/>
