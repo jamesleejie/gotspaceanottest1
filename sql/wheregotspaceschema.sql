@@ -14,10 +14,13 @@ CREATE TABLE IF NOT EXISTS library_system (
 );  --So that student can have multiple entries in the system where they entered at different times
 
 CREATE TABLE IF NOT EXISTS student(
-  matric_number VARCHAR(9) REFERENCES library_system(matric_number) PRIMARY KEY,
+  matric_number VARCHAR(9) REFERENCES library_system(matric_number),
   email VARCHAR(256) REFERENCES library_system(email) ,
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL
+  time_entered TIMESTAMPTZ DEFAULT Now(),
+  time_exited TIMESTAMPTZ ,
+  PRIMARY KEY(matric_number,email,time_entered)
 );
 
 CREATE TABLE IF NOT EXISTS available(
