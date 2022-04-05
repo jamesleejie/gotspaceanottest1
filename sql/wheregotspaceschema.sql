@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS student(
   time_entered TIMESTAMPTZ DEFAULT Now(),
   time_exited TIMESTAMPTZ ,
   FOREIGN KEY (matric_number, email) REFERENCES library_system(matric_number,email)
-  ON DELETE CASCADE DEFERRABLE
+  ON DELETE CASCADE DEFERRABLE,
   PRIMARY KEY(matric_number,email,time_entered)
 );
 
