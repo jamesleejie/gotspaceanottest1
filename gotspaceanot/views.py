@@ -76,6 +76,9 @@ def login(request):
             library = cursor.fetchone()
             if library == None:
                 status = 'Please tap into the library first before logging in'
+                context['status'] = status
+ 
+                return render(request, "gotspaceanot/login.html", context)
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
