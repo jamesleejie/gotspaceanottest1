@@ -72,19 +72,19 @@ def login(request):
     if request.POST:
         ## Check if martic_number is already in the table
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
-            lib = cursor.fetchone()
+
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
-            if lib[4] == lib[3]:
+            if student == None:
+                ##TODO: date validation
                 cursor.execute("INSERT INTO student VALUES (%s, %s, %s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'], request.POST['Level']])
                 ##Updating the available space when a student register which level he is going to study 
                 cursor.execute("UPDATE available SET available_seats = available_seats - 1 WHERE (library,level) =  (%s, %s)", [request.POST['Library'],request.POST['Level']] )
-                return redirect('gotspaceanot-logout')            
+                return redirect('gotspaceanot-logout') 
             else:
-                status = 'Student with Matric Number %s already exists and have not logged out.' % (request.POST['Matric Number'])                
+                status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
 
 
     context['status'] = status
@@ -106,10 +106,10 @@ def logout(request):
             if student == None:
                 status = 'Student with Matric Number %s does not exists' % (request.POST['Matric Number'])
             else:
-                ##Updating the available space when a student logsout
-                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = %s and Level = %s ", [student[2] , student[3]])
-                cursor.execute("UPDATE student SET time_exited = Now() WHERE DATE(Now()) = %s", [SELECT CURRENT_DATE()])
-                cursor.execute("UPDATE library_system SET time_exited = Now() WHERE DATE(Now()) = %s", [SELECT CURRENT_DATE()])
+                ##Updating the available space when a student logs out
+                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE (library,Level) = (%s, %s)", [student[2] , student[3]])
+                
+                
                 return redirect('gotspaceanot-welcome') 
 
     context['status'] = status
@@ -128,9 +128,8 @@ def library_system(request):
             NUS_system = cursor.fetchone()
             cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
             library_system = cursor.fetchone()
-            ## No customer with same id
+            ## No student with same id
             if NUS_system == None:
-                ##TODO: date validation
                 cursor.execute("INSERT INTO NUS_system VALUES (%s, %s)"
                         , [request.POST['Matric Number'], request.POST['Email']])
                 
