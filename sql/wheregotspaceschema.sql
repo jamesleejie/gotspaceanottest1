@@ -11,12 +11,9 @@ CREATE TABLE IF NOT EXISTS NUS_system (
 
 CREATE TABLE IF NOT EXISTS library_system (
   matric_number VARCHAR(9) NOT NULL REFERENCES NUS_system(matric_number),
-  email VARCHAR(256) NOT NULL REFERENCES NUS_system(email),
   library VARCHAR(7) NOT NULL,
-  time_entered TIMESTAMPTZ DEFAULT Now(),
-  time_exited TIMESTAMPTZ DEFAULT Now(),
-  PRIMARY KEY(matric_number,email,time_entered)
-);  --So that student can have multiple entries in the system where they entered at different times
+  PRIMARY KEY(matric_number,library)
+);
 
 
 CREATE TABLE IF NOT EXISTS available(
@@ -34,7 +31,7 @@ CREATE TABLE IF NOT EXISTS student(
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
   FOREIGN KEY(library,level) REFERENCES available(library,level),	
-  PRIMARY KEY(matric_number,email,time_entered)
+  PRIMARY KEY(matric_number,email)
 );
 
 
