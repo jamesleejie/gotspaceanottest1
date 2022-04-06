@@ -99,7 +99,7 @@ def register(request):
     if request.POST:
         ## Check if student is already in the table
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
+            cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
             if student == None:
