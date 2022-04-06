@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS library_system (
   email VARCHAR(256) NOT NULL REFERENCES NUS_system(email),
   library VARCHAR(7) NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
-  time_exited TIMESTAMPTZ ,
+  time_exited TIMESTAMPTZ DEFAULT Now(),
   PRIMARY KEY(matric_number,email,time_entered)
 );  --So that student can have multiple entries in the system where they entered at different times
 
