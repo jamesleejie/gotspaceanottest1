@@ -31,10 +31,11 @@ CREATE TABLE IF NOT EXISTS available(
 CREATE TABLE IF NOT EXISTS student(
   matric_number VARCHAR(9) REFERENCES NUS_system(matric_number),
   email VARCHAR(256) REFERENCES NUS_system(email) ,
-  library VARCHAR(7) NOT NULL REFERENCES available(library),
-  Level INT NOT NULL REFERENCES available(level),
+  library VARCHAR(7) NOT NULL,
+  Level INT NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
   time_exited TIMESTAMPTZ ,
+  FOREIGN KEY(library,level) REFERENCES available(library,level),	
   PRIMARY KEY(matric_number,email,time_entered)
 );
 
