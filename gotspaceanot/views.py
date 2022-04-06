@@ -108,8 +108,8 @@ def logout(request):
             else:
                 ##Updating the available space when a student logsout
                 cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = %s and Level = %s ", [student[2] , student[3]])
-                cursor.execute("UPDATE student SET time_exited = Now() WHERE DATE(Now()) = %s", [date(student[4])])
-                cursor.execute("UPDATE library_system SET time_exited = Now() WHERE DATE(Now()) = %s", [date(student[4])])
+                cursor.execute("UPDATE student SET time_exited = Now() WHERE DATE(Now()) = SELECT CURRENT_DATE()")
+                cursor.execute("UPDATE library_system SET time_exited = Now() WHERE DATE(Now()) = SELECT CURRENT_DATE()")
                 return redirect('gotspaceanot-welcome') 
 
     context['status'] = status
