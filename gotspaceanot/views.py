@@ -130,8 +130,8 @@ def library_system(request):
                 
             if library_system == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO library_system VALUES (%s, %s, %s)"
-                        , [request.POST['Matric Number'], request.POST['Email'], request.POST['Library'] ])
+                cursor.execute("INSERT INTO library_system VALUES (%s, %s)"
+                        , [request.POST['Matric Number'], request.POST['Library'] ])
                 return redirect('gotspaceanot-welcome')    
             else:
                 status = 'Student with Matric Number %s already inside the library' % (request.POST['Matric Number'])
