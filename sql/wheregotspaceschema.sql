@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS faculty (
 );
 
 CREATE TABLE IF NOT EXISTS department (
-  department VARCHAR(64) PRIMARY KEY,
   faculty VARCHAR(64) REFERENCES faculty(faculty)
+  department VARCHAR(64) PRIMARY KEY,
 );
 
 CREATE TABLE IF NOT EXISTS NUS_system (
