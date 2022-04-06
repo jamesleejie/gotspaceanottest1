@@ -107,7 +107,7 @@ def logout(request):
                 status = 'Student with Matric Number %s does not exists' % (request.POST['Matric Number'])
             else:
                 ##Updating the available space when a student logsout
-                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = %s and Level = %s and date(Now()) = %s", [student[2] , student[3], date(student[4])])
+                cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = %s and Level = %s ", [student[2] , student[3]])
                 
                 
                 return redirect('gotspaceanot-welcome') 
