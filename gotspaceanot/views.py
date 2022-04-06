@@ -91,6 +91,31 @@ def login(request):
  
     return render(request, "gotspaceanot/login.html", context)
 
+def register(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if student is already in the table
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
+            student = cursor.fetchone()
+            ## No student with same matric card
+            if student == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO NUS_system VALUES (%s, %s, %s, %s,%s)"
+                        , [request.POST['Matric Number'], request.POST['Email'], request.POST['Department'], request.POST['Year'],request.POST['Stay']])
+                ##Updating the NUS_system when a student register for the app
+                return redirect('gotspaceanot-login') 
+            else:
+                status = 'Student with Matric Number %s already registered' % (request.POST['Matric Number'])
+
+
+    context['status'] = status
+ 
+    return render(request, "gotspaceanot/register.html", context)
+
 def logout(request):
     """Shows the main page"""
     context = {}
