@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS student(
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
   time_entered TIMESTAMPTZ DEFAULT Now(),
-  time_exited DEFAULT 'None',
+  time_exited SET DEFAULT 'None',
   FOREIGN KEY(library,level) REFERENCES available(library,level),	
   PRIMARY KEY(matric_number,email,time_entered)
 );
