@@ -109,7 +109,7 @@ def logout(request):
                 ##Updating the available space when a student logsout
                 cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = %s and Level = %s ", [student[2] , student[3]])
                 cursor.execute("UPDATE student SET time_exited = Now() WHERE GETDATE(Now()) = %s", [student[4]])
-                
+                cursor.execute("UPDATE library_system SET time_exited = Now() WHERE GETDATE(Now()) = %s", [student[4]])
                 return redirect('gotspaceanot-welcome') 
 
     context['status'] = status
