@@ -4,9 +4,21 @@
 
 ********************/
 
+CREATE TABLE IF NOT EXISTS faculty (
+  faculty VARCHAR(64) PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS department (
+  department VARCHAR(64) PRIMARY KEY,
+  faculty VARCHAR(64) REFERENCES faculty(faculty)
+);
+
 CREATE TABLE IF NOT EXISTS NUS_system (
   matric_number VARCHAR(9) NOT NULL UNIQUE,
-  email VARCHAR(256) NOT NULL UNIQUE
+  email VARCHAR(256) NOT NULL UNIQUE,
+  student_department VARCHAR(64) NOT NULL REFERENCES department(department),
+  student_year INT NOT NULL,
+  hall BIT
 );
 
 CREATE TABLE IF NOT EXISTS library_system (
