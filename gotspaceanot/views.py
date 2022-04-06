@@ -102,12 +102,12 @@ def logout(request):
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
-            if student == None:
+            if student == 'None':
                 status = 'Student with Matric Number %s does not exists' % (request.POST['Matric Number'])
             else:
                 ##Updating the available space when a student logsout
                 cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE library = %s and Level = %s ", [student[2] , student[3]])
-                
+                cursor.execute("UPDATE student SET time_exited = Now() WHERE GETDATE(Now()) = %s", [student[4]])
                 
                 return redirect('gotspaceanot-welcome') 
 
