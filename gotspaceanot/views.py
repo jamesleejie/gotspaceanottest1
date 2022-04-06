@@ -77,7 +77,7 @@ def login(request):
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
-            if lib[5] == lib[4]:
+            if lib[4] == lib[3]:
                 status = 'Student with Matric Number %s already exists and have not logged out.' % (request.POST['Matric Number'])                
             else:
                 cursor.execute("INSERT INTO student VALUES (%s, %s, %s, %s)"
