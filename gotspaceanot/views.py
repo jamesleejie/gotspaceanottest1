@@ -72,7 +72,10 @@ def login(request):
     if request.POST:
         ## Check if martic_number is already in the table
         with connection.cursor() as cursor:
-
+            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            library = cursor.fetchone()
+            if library == None:
+                status = 'Please tap into the library first before logging in'
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
