@@ -80,7 +80,7 @@ def login(request):
  
                 return render(request, "gotspaceanot/login.html", context)
             if library[1] != request.POST['Library']:
-                status = 'Please choose the correct library first before logging in; %s' % (request.POST['Library'])
+                status = 'Please choose the correct library,%s first to log in.' % (library[1])
                 context['status'] = status
  
                 return render(request, "gotspaceanot/login.html", context)
