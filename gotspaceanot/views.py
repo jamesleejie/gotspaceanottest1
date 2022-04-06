@@ -124,14 +124,9 @@ def library_system(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
-            NUS_system = cursor.fetchone()
             cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
             library_system = cursor.fetchone()
             ## No student with same id
-            if NUS_system == None:
-                cursor.execute("INSERT INTO NUS_system VALUES (%s, %s)"
-                        , [request.POST['Matric Number'], request.POST['Email']])
                 
             if library_system == None:
                 ##TODO: date validation
@@ -162,9 +157,7 @@ def edit(request, id):
 
     if request.POST:
         ##TODO: date validation
-        with connection.cursor() as cursor:
-            cursor.execute("UPDATE NUS_system SET matric_number = %s, email = %s WHERE matric_number = %s"
-                    , [request.POST['matric_number'], request.POST['email'], id ])            
+        with connection.cursor() as cursor:           
             cursor.execute("UPDATE student SET matric_number = %s, email = %s, library = %s, Level = %s WHERE matric_number = %s"
                     , [request.POST['matric_number'], request.POST['email'], request.POST['library'],
                         request.POST['Level'] , id ])   
