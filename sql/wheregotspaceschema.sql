@@ -33,8 +33,6 @@ CREATE TABLE IF NOT EXISTS student(
   email VARCHAR(256) REFERENCES NUS_system(email) ,
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
-  time_entered TIMESTAMPTZ DEFAULT Now(),
-  time_exited TIMESTAMPTZ DEFAULT Now(),
   FOREIGN KEY(library,level) REFERENCES available(library,level),	
   PRIMARY KEY(matric_number,email,time_entered)
 );
