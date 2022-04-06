@@ -30,14 +30,12 @@ th, td {
         <thead>
             <th>Library</th>
             <th>Matric Number</th>
-            <th>Email</th>
 
         </thead>
         {% for i in records_library %}
         <tr>
             <td> {{ i.0 }} </td>
             <td> {{ i.1 }} </td>
-            <td> {{ i.2 }} </td>
 
         </tr>
         {% endfor %}
