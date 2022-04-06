@@ -38,10 +38,11 @@ CREATE TABLE IF NOT EXISTS available(
 
 
 CREATE TABLE IF NOT EXISTS student(
-  matric_number VARCHAR(9) REFERENCES NUS_system(matric_number),
-  email VARCHAR(256) REFERENCES NUS_system(email) ,
-  library VARCHAR(7) NOT NULL REFERENCES library_system(library),
+  matric_number VARCHAR(9),
+  email VARCHAR(256) REFERENCES NUS_system(email),
+  library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
+  FOREIGN KEY(matric_number,library) REFERENCES library_system(matric_number,library),	
   FOREIGN KEY(library,level) REFERENCES available(library,level),	
   PRIMARY KEY(matric_number,email)
 );
