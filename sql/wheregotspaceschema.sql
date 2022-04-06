@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS library_system (
   matric_number VARCHAR(9) NOT NULL REFERENCES NUS_system(matric_number),
   email VARCHAR(256) NOT NULL REFERENCES NUS_system(email),
   library VARCHAR(7) NOT NULL,
-  time_entered TIMESTAMPT DEFAULT Now(),
-  time_exited TIMESTAMPT DEFAULT Now(),
+  time_entered TIMESTAMPTZ DEFAULT Now(),
+  time_exited TIMESTAMPTZ DEFAULT Now(),
   PRIMARY KEY(matric_number,email,time_entered)
 );  --So that student can have multiple entries in the system where they entered at different times
 
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS student(
   email VARCHAR(256) REFERENCES NUS_system(email) ,
   library VARCHAR(7) NOT NULL,
   Level INT NOT NULL,
-  time_entered TIMESTAMPT DEFAULT Now(),
-  time_exited TIMESTAMPT DEFAULT Now(),
+  time_entered TIMESTAMPTZ DEFAULT Now(),
+  time_exited TIMESTAMPTZ DEFAULT Now(),
   FOREIGN KEY(library,level) REFERENCES available(library,level),	
   PRIMARY KEY(matric_number,email,time_entered)
 );
