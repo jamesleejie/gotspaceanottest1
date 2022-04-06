@@ -31,16 +31,14 @@ th, td {
             <th>Library</th>
             <th>Matric Number</th>
             <th>Email</th>
-            <th>Time Entered</th>
-            <th>Time Exited</th>
+
         </thead>
         {% for i in records_library %}
         <tr>
             <td> {{ i.0 }} </td>
             <td> {{ i.1 }} </td>
             <td> {{ i.2 }} </td>
-            <td> {{ i.3 }} </td>
-            <td> {{ i.4 }} </td>
+
         </tr>
         {% endfor %}
     </table>  
