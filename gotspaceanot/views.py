@@ -72,18 +72,28 @@ def login(request):
     if request.POST:
         ## Check if martic_number is already in the table
         with connection.cursor() as cursor:
+            #To catch the error when the student have not tapped into the library but wants to login in as if he is at the seat already.
             cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
             library = cursor.fetchone()
             if library == None:
                 status = 'Please tap into the library first before logging in'
                 context['status'] = status
- 
+                
+            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
                 return render(request, "gotspaceanot/login.html", context)
             if library[1] != request.POST['Library']:
                 status = 'Please choose the correct library,%s first to log in.' % (library[1])
                 context['status'] = status
- 
                 return render(request, "gotspaceanot/login.html", context)
+            
+            #To catch the error when the student chooses the wrong level of the library. E.g. CLB does not have a level 1
+            cursor.execute("SELECT level FROM available WHERE library = %s", library[1])
+            available = cursor.fetchall()
+            if request.POST['Level'] not in available:
+                status = 'Please choose the correct level from %s first to log in.' % (available)
+                context['status'] = status
+                return render(request, "gotspaceanot/login.html", context)
+
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
