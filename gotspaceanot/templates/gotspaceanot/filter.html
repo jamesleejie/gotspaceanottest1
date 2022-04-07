@@ -110,7 +110,23 @@ body, html {
         </table>
 </div>
 
+<div id="faculties" class="tabcontent">
+  <h3>Faculties of students who visit the librarys</h3>
+ <table border=1>
+            <thead>
+            <th>Faculty</th>
+            <th>Total Count</th>
+            </thead>
+        <tr>
+	{%for i in faculty_total%}
+            <td> {{ i.0 }} </td>
+            <td> {{ i.1 }} </td>
 
+            </tr>
+       {% endfor %}
+        </table>
+</div>
+	
 <script>
 function openPage(pageName,elmnt,color) {
   var i, tabcontent, tablinks;
