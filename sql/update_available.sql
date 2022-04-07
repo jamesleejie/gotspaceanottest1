@@ -1,0 +1,15 @@
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'CLB' AND level =  3;    
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'CLB' AND level = 4 ;    
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'CLB' AND level =  5 ;   
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'CHLB' AND level = 6 ;   
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'CJKLLB' AND level = 1;   
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'CJKLLB' AND level = 2;   
+UPDATE available SET available_seats = available_seats - 10 WHERE library =  'CJKLLB' AND level = 3;   
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'MLB' AND level = 5 ;   
+UPDATE available SET available_seats = available_seats - 10 WHERE library =  'MULB' AND level = 1;   
+UPDATE available SET available_seats = available_seats - 10 WHERE library =  'MULB' AND level = 2;   
+UPDATE available SET available_seats = available_seats - 10 WHERE library =  'MULB' AND level = 5;   
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'SLB' AND level = 4 ;   
+UPDATE available SET available_seats = available_seats - 10 WHERE library =  'SLB' AND level = 6 ;   
+UPDATE available SET available_seats = available_seats - 20 WHERE library =  'SLB' AND level = 5 ;   
+UPDATE available SET available_seats = available_seats - 10 WHERE library =  'YNLB' AND level = 2;
