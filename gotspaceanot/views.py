@@ -75,10 +75,6 @@ def login(request):
             #To catch the error when the student have not tapped into the library but wants to login in as if he is at the seat already.
             cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
             library = cursor.fetchone()
-            if library == None:
-                status = 'Please tap into the library first before logging in'
-                context['status'] = status                
-                return render(request, "gotspaceanot/login.html", context)
             
             #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
             if library[1] != request.POST['Library']:
@@ -111,7 +107,11 @@ def login(request):
                 return redirect('gotspaceanot-logout') 
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
-
+                
+            if library == None:
+                status = 'Please tap into the library first before logging in'
+                context['status'] = status                
+                return render(request, "gotspaceanot/login.html", context)
 
     context['status'] = status
  
