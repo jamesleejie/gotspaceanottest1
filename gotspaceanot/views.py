@@ -259,6 +259,6 @@ def filter(request):
         cursor.execute("SELECT COUNT(*) FROM student WHERE matric_number IN(SELECT matric_number FROM NUS_system WHERE hall = '0')")
         stay_out_total = cursor.fetchall()
         
-    result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in,'stay_in_total':stay_in_total}
+    result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in,'stay_in_total':stay_in_total,'stay_out':stay_out,'stay_out_total':stay_out_total}
 
     return render(request, "gotspaceanot/filter.html",result_dict3)
