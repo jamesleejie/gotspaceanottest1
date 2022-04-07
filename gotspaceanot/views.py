@@ -8,6 +8,8 @@ def administrator(request):
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
                 cursor.execute("DELETE FROM student WHERE matric_number = %s", [request.POST['Matric Number']])    
+                cursor.execute("DELETE FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])    
+                
                 
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM student ORDER BY library")
@@ -71,9 +73,31 @@ def login(request):
 
     if request.POST:
         ## Check if martic_number is already in the table
-        with connection.cursor() as cursor:           
+        with connection.cursor() as cursor:     
+
+            #Getting all the required table rows.
+            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            library = cursor.fetchone()
             cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
             nus_system = cursor.fetchone()
+            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
+            student = cursor.fetchone()
+            
+            #To catch the error when the student have not tapped into the library but wants to login in as if he is at the seat already.
+            #This prevents seats booking in advance as well.
+            if library == None:
+                status = 'Please tap into the library first before logging in or check if your matric is the same as registered.'
+                context['status'] = status                
+                return render(request, "gotspaceanot/login.html", context)
+            
+            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
+            if library[1] != request.POST['Library']:
+                status = 'Please choose the correct library,%s first to log in.' % (library[1])
+                context['status'] = status
+                return render(request, "gotspaceanot/login.html", context)
+
+            
+
             #To catch the error when the student input a wrong matric number or has not registered matric number
             if nus_system[0] != request.POST['Matric Number']:
                 status = 'Matric Number %s has not registered yet or is not the same as registered matric' % (request.POST['Matric Number'])
@@ -85,8 +109,7 @@ def login(request):
                 context['status'] = status
                 return render(request, "gotspaceanot/login.html", context)
             
-            cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
-            student = cursor.fetchone()
+
             ## No student with same matric card
             if student == None:
                 ##TODO: date validation
@@ -98,19 +121,7 @@ def login(request):
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
                 
-            #To catch the error when the student have not tapped into the library but wants to login in as if he is at the seat already.
-            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
-            library = cursor.fetchone()
-            
-            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
-            if library[1] != request.POST['Library']:
-                status = 'Please choose the correct library,%s first to log in.' % (library[1])
-                context['status'] = status
-                return render(request, "gotspaceanot/login.html", context)
-            if library == None:
-                status = 'Please tap into the library first before logging in'
-                context['status'] = status                
-                return render(request, "gotspaceanot/login.html", context)
+
 
     context['status'] = status
  
