@@ -95,7 +95,7 @@ def login(request):
                 return render(request, "gotspaceanot/login.html", context)
             
             if nus_system[1] != request.POST['Email']:
-                status = 'Matric Number %s has not registered yet or is not the same as registered matric' % (request.POST['Matric Number'])
+                status = 'Email %s has not registered yet or is not the same as registered email' % (request.POST['Email'])
                 context['status'] = status
                 return render(request, "gotspaceanot/login.html", context)
             
