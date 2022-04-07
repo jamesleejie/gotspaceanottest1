@@ -31,5 +31,6 @@ URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 psql ${URI} -f sql/wheregotspaceclean.sql
 psql ${URI} -f sql/wheregotspaceschema.sql
 psql ${URI} -f sql/wheregotspaceavailable.sql
-
-
+psql ${URI} -f sql/faculty.sql
+psql ${URI} -f sql/department.sql
+psql ${URI} -f sql/nus_system.sql
