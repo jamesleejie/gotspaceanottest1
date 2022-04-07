@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db import connection
+from django.shortcuts import render
+from django.http import HttpResponse
+from collections import OrderedDict
 
 # Create your views here.
 def administrator(request):
@@ -263,3 +266,55 @@ def filter(request):
     result_dict3 = {'stay_in':stay_in,'stay_in_total':stay_in_total,'stay_out':stay_out,'stay_out_total':stay_out_total,'department_total':department_total, 'faculty_total':faculty_total}
 
     return render(request, "gotspaceanot/filter.html",result_dict3)
+
+
+
+# Include the `fusioncharts.py` file that contains functions to embed the charts.
+from ..fusioncharts import FusionCharts
+
+# Loading Data from a Ordered Dictionary
+# Example to create a column 2D chart with the chart data passed as Dictionary format.
+# The `chart` method is defined to load chart data from Dictionary.
+
+def chart(request):
+
+    with connection.cursor() as cursor:
+	    cursor.execute("SELECT faculty, COUNT(faculty) FROM department where department IN (SELECT student_department FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department) GROUP BY faculty")
+	    faculty_total = cursor.fetchall() 
+	
+    # Chart data is passed to the `dataSource` parameter, as dictionary in the form of key-value pairs.
+    dataSource = OrderedDict()
+
+    # The `chartConfig` dict contains key-value pairs data for chart attribute
+    chartConfig = OrderedDict()
+    chartConfig["caption"] = "Faculties of students who visit the libraries"
+    chartConfig["xAxisName"] = "Faculty"
+    chartConfig["yAxisName"] = "Number"
+    chartConfig["theme"] = "fusion"
+
+    # The `chartData` dict contains key-value pairs data
+    chartData = OrderedDict()
+    for i in faculty_total:
+	chartData[i.0] = i.1
+
+
+    dataSource["chart"] = chartConfig
+    dataSource["data"] = []
+
+    # Convert the data in the `chartData` array into a format that can be consumed by FusionCharts.
+    # The data for the chart should be in an array wherein each element of the array is a JSON object
+    # having the `label` and `value` as keys.
+
+    # Iterate through the data in `chartData` and insert in to the `dataSource['data']` list.
+    for key, value in chartData.items():
+        data = {}
+        data["label"] = key
+        data["value"] = value
+        dataSource["data"].append(data)
+
+
+    # Create an object for the column 2D chart using the FusionCharts class constructor
+    # The chart data is passed to the `dataSource` parameter.
+    column2D = FusionCharts("column2d", "ex1" , "600", "400", "chart-1", "json", dataSource)
+
+    return  render(request, "gotspaceanot/charts.html",{'output' : column2D.render(), 'chartTitle': 'Simple Chart Using Array'})
