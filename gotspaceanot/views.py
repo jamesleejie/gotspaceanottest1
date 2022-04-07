@@ -77,15 +77,28 @@ def login(request):
             library = cursor.fetchone()
             if library == None:
                 status = 'Please tap into the library first before logging in'
-                context['status'] = status
-                
-            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
+                context['status'] = status                
                 return render(request, "gotspaceanot/login.html", context)
+            
+            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
             if library[1] != request.POST['Library']:
                 status = 'Please choose the correct library,%s first to log in.' % (library[1])
                 context['status'] = status
                 return render(request, "gotspaceanot/login.html", context)
-
+            
+            cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            nus_system = cursor.fetchone()
+            #To catch the error when the student input a wrong matric number or has not registered matric number
+            if nus_system[0] != request.POST['Matric Number']:
+                status = 'Matric Number %s has not registered yet or is not the same as registered matric' % (request.POST['Matric Number'])
+                context['status'] = status
+                return render(request, "gotspaceanot/login.html", context)
+            
+            if nus_system[1] != request.POST['Email']:
+                status = 'Matric Number %s has not registered yet or is not the same as registered matric' % (request.POST['Matric Number'])
+                context['status'] = status
+                return render(request, "gotspaceanot/login.html", context)
+            
             cursor.execute("SELECT * FROM student WHERE matric_number = %s", [request.POST['Matric Number']])
             student = cursor.fetchone()
             ## No student with same matric card
