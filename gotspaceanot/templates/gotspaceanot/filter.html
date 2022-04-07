@@ -95,7 +95,19 @@ body, html {
 
 <div id="departments" class="tabcontent">
   <h3>Departments of students who visit the librarys</h3>
-  <p>Get in touch, or swing by for a cup of coffee.</p>
+ <table border=1>
+            <thead>
+            <th>Department</th>
+            <th>Total Count</th>
+            </thead>
+        <tr>
+	{%for i in department_total%}
+            <td> {{ i.0 }} </td>
+            <td> {{ i.1 }} </td>
+
+            </tr>
+       {% endfor %}
+        </table>
 </div>
 
 
