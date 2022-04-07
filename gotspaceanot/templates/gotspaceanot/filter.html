@@ -3,7 +3,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	
-<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 	
 <style>
 * {box-sizing: border-box}
@@ -97,6 +96,9 @@ body, html {
        {% endfor %}
         </table>
 	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
 	<script>
 var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
 var yValues = [55, 49, 44, 24, 15];
@@ -157,7 +159,6 @@ new Chart("myChart", {
         </table>
 </div>
 	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	
 <script>
 function openPage(pageName,elmnt,color) {
