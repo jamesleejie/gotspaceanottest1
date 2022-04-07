@@ -76,25 +76,7 @@ body, html {
 </div>
 
 <div id="stay_off_campus" class="tabcontent">
-   {%for i in stay_out_total%}
-  <h3>Students who stay off Campus: Total Count: {{i.0}}</h3>
-  {% endfor %}
- <table border=1>
-            <thead>
-            <th>Matric_Number</th>
-            <th>Email</th>
-            <th>Library</th>
-            <th>Level</th>
-            </thead>
-        <tr>
-        {%for stu in stay_out%}
-            <td> {{ stu.0 }} </td>
-            <td> {{ stu.1 }} </td>
-            <td> {{ stu.2 }} </td>
-            <td> {{ stu.3 }} </td>
-            </tr>
-       {% endfor %}
-        </table>
+
 	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
@@ -121,7 +103,28 @@ new Chart("myChart", {
     }
   }
 });
-</script>
+</script>	
+	
+   {%for i in stay_out_total%}
+  <h3>Students who stay off Campus: Total Count: {{i.0}}</h3>
+  {% endfor %}
+ <table border=1>
+            <thead>
+            <th>Matric_Number</th>
+            <th>Email</th>
+            <th>Library</th>
+            <th>Level</th>
+            </thead>
+        <tr>
+        {%for stu in stay_out%}
+            <td> {{ stu.0 }} </td>
+            <td> {{ stu.1 }} </td>
+            <td> {{ stu.2 }} </td>
+            <td> {{ stu.3 }} </td>
+            </tr>
+       {% endfor %}
+        </table>
+
 	
 </div>
 
