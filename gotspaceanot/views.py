@@ -159,8 +159,9 @@ def logout(request):
             else:
                 ##Updating the available space when a student logs out
                 cursor.execute("UPDATE available SET available_seats = available_seats + 1 WHERE (library,Level) = (%s, %s)", [student[2] , student[3]])
-                
-                
+                cursor.execute("DELETE FROM student WHERE matric_number = %s", request.POST['Matric Number'])
+                cursor.execute("DELETE FROM library_system WHERE matric_number = %s", request.POST['Matric Number'])
+
                 return redirect('gotspaceanot-welcome') 
 
     context['status'] = status
