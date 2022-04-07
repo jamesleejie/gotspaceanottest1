@@ -12,5 +12,6 @@ urlpatterns = [
     path('library_system/', views.library_system, name = 'gotspaceanot-library_system'),
     path('administrator/', views.administrator, name = 'gotspaceanot-administrator'),
     path('administrator/edit/<str:id>', views.edit, name='edit'),    
+    path('administrator/filter/', views.filter, name='filter'),
     path('register/',views.register, name = 'gotspaceanot-registration'),
 ]
