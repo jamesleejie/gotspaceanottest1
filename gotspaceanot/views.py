@@ -246,7 +246,7 @@ def filter(request):
         library_system = cursor.fetchall()
 
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM student WHERE matric_number IN(SELECT matric_number FROM NUS_system WHERE hall = 1)")
+        cursor.execute("SELECT * FROM student WHERE matric_number IN(SELECT matric_number FROM NUS_system WHERE hall = 'TRUE')")
         stay_in = cursor.fetchall()
 
     result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in}
