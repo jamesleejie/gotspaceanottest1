@@ -260,7 +260,7 @@ def filter(request):
         stay_out_total = cursor.fetchall()
         
     with connection.cursor() as cursor:
-	    cursor.execute("SELECT student_department,COUNT(student_department) FROM NUS_system GROUP BY student_department HAVING matric = (SELECT matric_number FROM student)")
+	    cursor.execute("SELECT student_department,COUNT(student_department) FROM NUS_system GROUP BY student_department HAVING matric_number = (SELECT matric_number FROM student)")
 	    department_total = cursor.fetchall()    
         
     result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in,'stay_in_total':stay_in_total,'stay_out':stay_out,'stay_out_total':stay_out_total,'department_total':department_total}
