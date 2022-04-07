@@ -48,7 +48,9 @@ body, html {
 <button class="tablink" onclick="openPage('stay_on_campus', this, 'powderblue')">Stay on Campus</button>
 <button class="tablink" onclick="openPage('stay_off_campus', this, 'powderblue')" id="defaultOpen">Stay off Campus</button>
 <button class="tablink" onclick="openPage('departments', this, 'powderblue')">Departments</button>
+<button class="tablink" onclick="openPage('faculties', this, 'powderblue')">Faculties</button>
 
+	
 <div id="stay_on_campus" class="tabcontent">
    {%for i in stay_in_total%}
   <h3>Students who stay on Campus: Total Count: {{i.0}}</h3>
