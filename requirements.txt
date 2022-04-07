@@ -4,4 +4,4 @@ django-crispy-forms
 psycopg2
 gunicorn
 python-decouple
-django-fusioncharts
+fusion.py
