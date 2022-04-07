@@ -71,17 +71,7 @@ def login(request):
 
     if request.POST:
         ## Check if martic_number is already in the table
-        with connection.cursor() as cursor:
-            #To catch the error when the student have not tapped into the library but wants to login in as if he is at the seat already.
-            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
-            library = cursor.fetchone()
-            
-            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
-            if library[1] != request.POST['Library']:
-                status = 'Please choose the correct library,%s first to log in.' % (library[1])
-                context['status'] = status
-                return render(request, "gotspaceanot/login.html", context)
-            
+        with connection.cursor() as cursor:           
             cursor.execute("SELECT * FROM NUS_system WHERE matric_number = %s", [request.POST['Matric Number']])
             nus_system = cursor.fetchone()
             #To catch the error when the student input a wrong matric number or has not registered matric number
@@ -108,6 +98,15 @@ def login(request):
             else:
                 status = 'Student with Matric Number %s already exists' % (request.POST['Matric Number'])
                 
+            #To catch the error when the student have not tapped into the library but wants to login in as if he is at the seat already.
+            cursor.execute("SELECT * FROM library_system WHERE matric_number = %s", [request.POST['Matric Number']])
+            library = cursor.fetchone()
+            
+            #To catch the error when the student inputs the wrong library: E.g. He tapped into CLB but inputted SLB          
+            if library[1] != request.POST['Library']:
+                status = 'Please choose the correct library,%s first to log in.' % (library[1])
+                context['status'] = status
+                return render(request, "gotspaceanot/login.html", context)
             if library == None:
                 status = 'Please tap into the library first before logging in'
                 context['status'] = status                
