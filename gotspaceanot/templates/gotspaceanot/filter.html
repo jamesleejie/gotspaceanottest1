@@ -50,7 +50,9 @@ body, html {
 <button class="tablink" onclick="openPage('departments', this, 'powderblue')">Departments</button>
 
 <div id="stay_on_campus" class="tabcontent">
-  <h3>Students who stay on Campus: Total Count: {{stay_in_total}}</h3>
+   {%for i in stay_in_total%}
+  <h3>Students who stay on Campus: Total Count: {{i.0}}</h3>
+  {% endfor %}
  <table border=1>
             <thead>
             <th>Matric_Number</th>
