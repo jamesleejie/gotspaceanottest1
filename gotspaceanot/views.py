@@ -253,11 +253,11 @@ def filter(request):
         stay_out_total = cursor.fetchall()
         
     with connection.cursor() as cursor:
-	    cursor.execute("SELECT student_department,COUNT(student_department) FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department")
+	    cursor.execute("SELECT student_department,COUNT(student_department) AS total FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department ORDER BY total DESC")
 	    department_total = cursor.fetchall()    
 	
     with connection.cursor() as cursor:
-	    cursor.execute("SELECT faculty, COUNT(faculty) FROM department where department IN (SELECT student_department FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department) GROUP BY faculty")
+	    cursor.execute("SELECT faculty, COUNT(faculty) AS total FROM department where department IN (SELECT student_department FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department) GROUP BY faculty ORDER BY total DESC")
 	    faculty_total = cursor.fetchall() 
         
     result_dict3 = {'stay_in':stay_in,'stay_in_total':stay_in_total,'stay_out':stay_out,'stay_out_total':stay_out_total,'department_total':department_total, 'faculty_total':faculty_total}
