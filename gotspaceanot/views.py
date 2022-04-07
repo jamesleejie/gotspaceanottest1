@@ -237,13 +237,6 @@ def edit(request, id):
 
 def filter(request):
     """Shows the main page"""
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM student ORDER BY library")
-        student = cursor.fetchall()
-
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM library_system ORDER BY library")
-        library_system = cursor.fetchall()
     #To find students who stay on campus and the total number
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM student WHERE matric_number IN(SELECT matric_number FROM NUS_system WHERE hall = '1')")
@@ -262,7 +255,11 @@ def filter(request):
     with connection.cursor() as cursor:
 	    cursor.execute("SELECT student_department,COUNT(student_department) FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department")
 	    department_total = cursor.fetchall()    
+	
+    with connection.cursor() as cursor:
+	    cursor.execute("SELECT faculty, COUNT(faculty) FROM department where department IN (SELECT student_department FROM NUS_system WHERE matric_number IN (SELECT matric_number FROM student) GROUP BY student_department) GROUP BY faculty")
+	    faculty_total = cursor.fetchall() 
         
-    result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in,'stay_in_total':stay_in_total,'stay_out':stay_out,'stay_out_total':stay_out_total,'department_total':department_total}
+    result_dict3 = {'stay_in':stay_in,'stay_in_total':stay_in_total,'stay_out':stay_out,'stay_out_total':stay_out_total,'department_total':department_total, 'faculty_total':faculty_total}
 
     return render(request, "gotspaceanot/filter.html",result_dict3)
