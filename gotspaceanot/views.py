@@ -248,7 +248,10 @@ def filter(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM student WHERE matric_number IN(SELECT matric_number FROM NUS_system WHERE hall = '1')")
         stay_in = cursor.fetchall()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT COUNT(*) FROM student WHERE matric_number IN(SELECT matric_number FROM NUS_system WHERE hall = '1')")
+        stay_in_total = cursor.fetchall()
 
-    result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in}
+    result_dict3 = {'library_system': library_system, 'student': student,'stay_in':stay_in,'stay_in_total':stay_in_total}
 
     return render(request, "gotspaceanot/filter.html",result_dict3)
